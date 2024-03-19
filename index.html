@@ -1,0 +1,194 @@
+<html>
+           <head>
+            <title>DailyNotes</title>
+            <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO9OoAlLnq9c5A6pIjkzsPxNIdTWRXjvhvtw&usqp=CAU">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+			<style>
+			*{
+				margin:0;
+				padding:0;    
+			}
+			.body{
+				font-family: 'poppins', sans-serif;
+			}
+			.nav{
+				border-radius: 10px;
+				background-color:#fD6569;
+				padding:10px;
+			}
+			.book-container{
+				padding:20px;
+				display:inline-block;
+			}
+			.book1{
+				width:28%;
+				align:justify;  
+				padding:20px;
+				background-color:black;
+				color:white;
+				border-radius:5px;
+				display:inline-block;
+				vertical-align: top;
+				margin:10px;
+			}
+			
+			.book1 h1{
+					color: #fD6569;
+			}
+			.book1 button{
+				background-color:#fD6569;
+				color:black;
+				border-radius:10px;
+				padding-left:10px;
+				padding-right:10px;
+				padding-top:10px;
+				padding-bottom:10px;
+				border:none;
+				margin-top:20px;
+				margin-bottom:-5px;
+			}
+			.plus{
+				background-color: #fD6569;
+				color:black;
+				border-left: 30px;
+				border-right: 30px;
+				border-top: 10px;
+				border-bottom: 10px;
+				padding:20px;
+				border-radius:100%;
+				font-size:30px;
+				border:none;
+				position:fixed;
+				bottom:30px;
+				right:50px;
+			}
+			.ppoverlay{
+				background-color:black;
+				opacity:0.8;
+				width: 100%;
+				height: 100%;
+				position:absolute;
+				top:0;
+				left:0;
+				z-index:1;
+				display:none;
+			}
+			.ppbox{
+				background-color: #fD6569;
+				position: absolute;
+				z-index:2;
+				width:40%;
+				padding:40px;
+				border-radius:10px;
+				position:absolute;
+				left:30%;
+				top:20%;
+				z-index:2;
+				display:none;
+			}
+			.ppbox input{
+				background-color:transparent;
+				width:100%;
+				border:none;
+				border-bottom:solid black 2px;
+				font-size:20px;
+				margin:5px;
+				padding:5px;
+			}
+			.ppbox textarea{
+				background-color:transparent;
+				width:100%;
+				border:none;
+				border:solid black 2px;
+				font-size:20px;
+				margin:5px;
+				padding:5px;
+			} 
+			.ppbox input::placeholder{
+			   color:black;
+			}
+			.ppbox textarea::placeholder{
+				color:black;
+			 }
+			 .ppbox button{
+				background-color:black;
+				color:white;
+				padding-left:20px;
+				padding-right:20px;
+				padding-top:10px;
+				padding-bottom:10px;
+				margin:5px;
+			 }
+			 .ppbox input:focus{
+				outline:none;
+			 }
+			 .ppbox textarea:focus{
+				outline:none;
+			 }   
+		</style>
+		</head>
+ <body>
+   <div class="nav">
+    <h1 style="font-family: 'poppins', sans-serif;">Daily Notes</h1>
+   </div>
+        <div class="book-container">
+            <div class="book1">
+              <h1 style="color: #fD6569;">Create your memories &#127752</h1><br>
+              <p style="font-size:20px">As important as preserving memories is for reminiscing on with past generations As important as preserving memories is for reminiscing on with past generations</p>
+              <br>
+            </div>
+            </div>
+            <div class="ppoverlay"></div>
+            <div class="ppbox"> 
+              <h2>Add notes</h2>
+              <form>
+                <input type="text" placeholder="Add Notes" id="addnotes">
+                <input type="text" placeholder="Expectations" id="expect">
+                <textarea id="shortdesc" placeholder="mention the description"></textarea>
+                <button id="ppadd">Add</button>
+                <button id="ppcancel">Cancel</button>
+              </form>
+            </div>
+          </div>
+          </div>
+        <button class="plus" id="plusbutton">+</button>
+   </body>
+      <script>
+		 var ppoverlay=document.querySelector(".ppoverlay")
+ var ppbox=document.querySelector(".ppbox")
+ var plus=document.getElementById("plusbutton")
+ var cancel=document.getElementById("ppcancel");
+ plus.addEventListener("click",function(){
+    ppoverlay.style.display="block";
+    ppbox.style.display="block";
+}) 
+cancel.addEventListener("click",function(event){
+     event.preventDefault();
+     ppoverlay.style.display="none";
+     ppbox.style.display="none";
+})
+var book1=document.querySelector(".book-container");
+var ppadd=document.getElementById("ppadd");
+var addnotes=document.getElementById("addnotes");
+var expect=document.getElementById("expect");
+var shortdesc=document.getElementById("shortdesc");
+ppadd.addEventListener("click",function(event){
+     event.preventDefault();
+     var div=document.createElement("div");
+     div.setAttribute("class","book1");
+     div.innerHTML=`<h1>${addnotes.value}</h1>
+     <h3>${expect.value}</h3>
+     <p>${shortdesc.value}</p>
+     <button onclick="fent(event)">Delete</button>`;
+     book1.append(div);     
+     ppoverlay.style.display="none";
+     ppbox.style.display="none";
+})
+function fent(event)
+{
+     event.target.parentElement.remove();
+}
+	  </script>
+    </html>
